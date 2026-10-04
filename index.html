@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2 Grammar Lab: 8.12 Prepositions after Verbs, Nouns & Adjectives</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f6ff',
+                            100: '#e0edff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 text-white p-2.5 rounded-xl shadow-md shadow-blue-500/20">
+                    <i class="fa-solid fa-layer-group text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">B2 Master Lab 8.12</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Prepositions after Verbs, Nouns & Adjectives</p>
+                </div>
+            </div>
+
+            <!-- Score & Progress Display -->
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center gap-3 bg-slate-100 dark:bg-slate-800/80 px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+                    <div class="text-xs font-semibold text-slate-600 dark:text-slate-300">
+                        Progress: <span id="header-progress-text" class="text-blue-600 dark:text-blue-400 font-bold">0/32</span>
+                    </div>
+                    <div class="w-20 bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                        <div id="header-progress-bar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 px-3 py-1.5 rounded-xl font-bold text-xs sm:text-sm">
+                    <i class="fa-solid fa-trophy text-amber-500"></i>
+                    <span>Score: <span id="header-score">0</span></span>
+                </div>
+
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" aria-label="Toggle theme">
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow space-y-8">
+
+        <!-- Filterable & Searchable Grammar Reference -->
+        <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm overflow-hidden">
+            <div class="p-5 sm:p-6 border-b border-slate-100 dark:border-slate-700/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-xs uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-book"></i> Interactive Grammar Reference
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">B2 Target Preposition Structures & Nuances</h2>
+                </div>
+                <!-- Search Box -->
+                <div class="relative min-w-[260px]">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="ref-search" oninput="filterGrammarRef()" placeholder="Search (e.g., proud, depend, look forward)..." class="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white">
+                </div>
+            </div>
+
+            <!-- Categories Tabs -->
+            <div class="px-5 pt-3 border-b border-slate-100 dark:border-slate-700/50 flex gap-2 overflow-x-auto no-scrollbar" id="ref-category-tabs">
+                <button onclick="filterCategory('all')" class="cat-btn active px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 border border-blue-200 dark:border-blue-800 whitespace-nowrap">All Patterns</button>
+                <button onclick="filterCategory('v+p')" class="cat-btn px-3.5 py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 whitespace-nowrap">Verb + Prep</button>
+                <button onclick="filterCategory('v+o+p')" class="cat-btn px-3.5 py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 whitespace-nowrap">Verb + Object + Prep</button>
+                <button onclick="filterCategory('n+p')" class="cat-btn px-3.5 py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 whitespace-nowrap">Noun + Prep</button>
+                <button onclick="filterCategory('adj+p')" class="cat-btn px-3.5 py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 whitespace-nowrap">Adjective + Prep</button>
+                <button onclick="filterCategory('nuances')" class="cat-btn px-3.5 py-2 text-xs font-semibold rounded-lg bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 whitespace-nowrap">B2 Nuances & No Prep</button>
+            </div>
+
+            <!-- Reference Table Container -->
+            <div class="p-5 overflow-x-auto max-h-72 overflow-y-auto custom-scrollbar" id="ref-table-container">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-400 uppercase">
+                            <th class="py-2.5 px-3">Category</th>
+                            <th class="py-2.5 px-3">Structure / Phrasal Match</th>
+                            <th class="py-2.5 px-3">B2 Example Sentence</th>
+                        </tr>
+                    </thead>
+                    <tbody id="grammar-ref-tbody" class="divide-y divide-slate-100 dark:divide-slate-700/50">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section Navigation -->
+        <div class="flex flex-wrap gap-2 border-b border-slate-200 dark:border-slate-800 pb-3" id="app-nav">
+            <button onclick="switchSection('sec1')" id="nav-sec1" class="section-nav-btn active px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-blue-600 text-white shadow-sm flex items-center gap-2">
+                <i class="fa-solid fa-comments"></i> 1. Dialogue Cloze (Ex 23+)
+            </button>
+            <button onclick="switchSection('sec2')" id="nav-sec2" class="section-nav-btn px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <i class="fa-solid fa-bug"></i> 2. Error Correction
+            </button>
+            <button onclick="switchSection('sec3')" id="nav-sec3" class="section-nav-btn px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> 3. Sentence Transformations
+            </button>
+            <button onclick="switchSection('sec4')" id="nav-sec4" class="section-nav-btn px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square"></i> 4. "About You" Speaking/Writing
+            </button>
+        </div>
+
+        <!-- SECTION 1: DIALOGUE CLOZE MASTER -->
+        <section id="sec1" class="app-section space-y-6">
+            <div class="bg-blue-50 dark:bg-blue-950/40 border-l-4 border-blue-600 p-4 rounded-r-xl text-blue-900 dark:text-blue-200">
+                <h3 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info"></i> Section 1: Retirement & Career Volunteering Dialogue
+                </h3>
+                <p class="text-xs sm:text-sm mt-1 text-blue-800 dark:text-blue-300">
+                    Fill in each blank with the correct <strong>preposition + gerund (-ing)</strong> or <strong>bare infinitive / gerund alone</strong> where NO preposition is needed.
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6" id="dialogue-container">
+                <!-- Rendered dynamically -->
+            </div>
+            
+            <div class="flex justify-end gap-3">
+                <button onclick="checkSection1()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-md transition">
+                    Check Section 1 Answers
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ERROR CORRECTION DIAGNOSTIC -->
+        <section id="sec2" class="app-section space-y-6 hidden">
+            <div class="bg-amber-50 dark:bg-amber-950/40 border-l-4 border-amber-500 p-4 rounded-r-xl text-amber-900 dark:text-amber-200">
+                <h3 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Section 2: B2 Error Correction Challenge
+                </h3>
+                <p class="text-xs sm:text-sm mt-1 text-amber-800 dark:text-amber-300">
+                    Identify the mistake in preposition usage, gerund/infinitive structure, or unnecessary preposition. Choose the correct fix.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4" id="sec2-container">
+                <!-- Dynamic questions -->
+            </div>
+
+            <div class="flex justify-end">
+                <button onclick="checkSection2()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-md transition">
+                    Check Section 2 Answers
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SENTENCE TRANSFORMATIONS -->
+        <section id="sec3" class="app-section space-y-6 hidden">
+            <div class="bg-indigo-50 dark:bg-indigo-950/40 border-l-4 border-indigo-600 p-4 rounded-r-xl text-indigo-900 dark:text-indigo-200">
+                <h3 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-rotate"></i> Section 3: B2 Sentence Transformation
+                </h3>
+                <p class="text-xs sm:text-sm mt-1 text-indigo-800 dark:text-indigo-300">
+                    Complete the second sentence so that it has a similar meaning to the first sentence using the target prepositional structure provided in brackets.
+                </p>
+            </div>
+
+            <div class="space-y-4" id="sec3-container">
+                <!-- Dynamic questions -->
+            </div>
+
+            <div class="flex justify-end">
+                <button onclick="checkSection3()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-md transition">
+                    Check Section 3 Answers
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION 4: "ABOUT YOU" WRITING & SPEAKING PROMPTS -->
+        <section id="sec4" class="app-section space-y-6 hidden">
+            <div class="bg-emerald-50 dark:bg-emerald-950/40 border-l-4 border-emerald-600 p-4 rounded-r-xl text-emerald-900 dark:text-emerald-200">
+                <h3 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-comments"></i> Section 4: Interactive Journal & Self-Check Checklist
+                </h3>
+                <p class="text-xs sm:text-sm mt-1 text-emerald-800 dark:text-emerald-300">
+                    Respond to these B2 discussion questions (from textbook page 224). Use the self-audit checklist to verify that your answer uses target prepositions + gerunds correctly!
+                </p>
+            </div>
+
+            <div class="space-y-6" id="sec4-container">
+                <!-- Dynamic journaling cards -->
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- GRAMMAR DATA BANK ---
+        const grammarData = [
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'care about', ex: 'She really cares about helping underprivileged children in her city.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'complain about', ex: 'He always complains about working late on Fridays.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'dream about', ex: 'They dream about launching their own tech start-up.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'adjust to + gerund', ex: 'He found it hard to adjust to living in a smaller apartment.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'look forward to + gerund', ex: 'I look forward to starting my new volunteer position next week.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'depend on', ex: 'Their self-worth depends on feeling needed in society.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'insist on', ex: 'Dawson insisted on giving away his entire fortune.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'plan on + gerund / plan to + inf', ex: 'She plans on volunteering / plans to volunteer on weekends.' },
+            { cat: 'v+p', type: 'Verb + Preposition', pattern: 'succeed in', ex: 'Bill Gates succeeded in building a global empire.' },
+            
+            { cat: 'v+o+p', type: 'Verb + Object + Prep', pattern: 'accuse... of', ex: 'You cannot accuse him of not caring about others.' },
+            { cat: 'v+o+p', type: 'Verb + Object + Prep', pattern: 'apologize to... for', ex: 'He apologized to his team for making a critical error.' },
+            { cat: 'v+o+p', type: 'Verb + Object + Prep', pattern: 'blame... for', ex: 'Don\'t blame her for losing the documents.' },
+            { cat: 'v+o+p', type: 'Verb + Object + Prep', pattern: 'keep / prevent / stop... from', ex: 'Nothing could stop Dawson from giving away his money.' },
+            { cat: 'v+o+p', type: 'Verb + Object + Prep', pattern: 'warn... about', ex: 'The NGO warns young people about falling for fraudulent schemes.' },
+
+            { cat: 'n+p', type: 'Noun + Preposition', pattern: 'in danger of', ex: 'Many wildlife species are in danger of becoming extinct.' },
+            { cat: 'n+p', type: 'Noun + Preposition', pattern: 'in favor of', ex: 'Most board members are in favor of donating to charity.' },
+            { cat: 'n+p', type: 'Noun + Preposition', pattern: 'need for / reason for', ex: 'What was her reason for quitting her high-paying corporate job?' },
+
+            { cat: 'adj+p', type: 'Adj + Preposition', pattern: 'capable of / guilty of / proud of', ex: 'He is capable of managing complex international projects.' },
+            { cat: 'adj+p', type: 'Adj + Preposition', pattern: 'accustomed to / used to + gerund', ex: 'She isn\'t accustomed to having so much free time.' },
+            { cat: 'adj+p', type: 'Adj + Preposition', pattern: 'famous for / responsible for', ex: 'Carnegie is famous for building public libraries worldwide.' },
+            { cat: 'adj+p', type: 'Adj + Preposition', pattern: 'grateful to... for', ex: 'He was grateful to his mentors for guiding him.' },
+
+            { cat: 'nuances', type: 'Special Nuance', pattern: 'spend time + NO PREPOSITION + gerund', ex: 'He spends all his time watching TV. (NOT: spend time in/on watching)' },
+            { cat: 'nuances', type: 'Special Nuance', pattern: 'have a great time + NO PREPOSITION + gerund', ex: 'He would have a great time working there. (NOT: time in working)' },
+            { cat: 'nuances', type: 'Special Nuance', pattern: 'thank someone + NO PREPOSITION (direct object)', ex: 'Thank you for giving me this idea. (NOT: Thank to you)' },
+            { cat: 'nuances', type: 'Special Nuance', pattern: 'afraid of + gerund VS afraid + to-infinitive', ex: 'I am afraid of making a mistake. / I am afraid to make a mistake. (Both valid)' },
+            { cat: 'nuances', type: 'Special Nuance', pattern: 'look forward to + GERUND', ex: 'I look forward to meeting you. ("To" is a preposition here, NOT infinitive)' }
+        ];
+
+        // --- SECTION 1 QUESTIONS ---
+        const sec1Questions = [
+            { id: 's1_1', prompt: "A: My father's going to retire next month. He's worried", verb: "have", suffix: "too much time on his hands.", ansPrep: "about", ansVerb: "having", exp: "worried + about + gerund (-ing)." },
+            { id: 's1_2', prompt: "B: I don't blame him", verb: "be", suffix: "worried. For a lot of people, their self-worth depends", ansPrep: "for", ansVerb: "being", secondPrep: "on", exp: "blame [someone] + FOR + gerund; depend + ON." },
+            { id: 's1_3', prompt: "A: My mother is afraid that he'll spend all his time", verb: "watch", suffix: "TV. Besides, she's not accustomed", ansPrep: "NO PREP", ansVerb: "watching", secondPrep: "to", exp: "spend time + [gerund directly without preposition]; accustomed + TO." },
+            { id: 's1_4', prompt: "A: ... accustomed to", verb: "have", suffix: "him home all day.", ansPrep: "NO PREP", ansVerb: "having", exp: "accustomed to + gerund (-ing)." },
+            { id: 's1_5', prompt: "B: Doesn't he have any interests? A: Well, he's interested", verb: "garden", suffix: ", but they live in an apartment now.", ansPrep: "in", ansVerb: "gardening", exp: "interested + IN + gerund." },
+            { id: 's1_6', prompt: "A: When they had a house, my dad was always proud", verb: "have", suffix: "the nicest garden on the block.", ansPrep: "of", ansVerb: "having", exp: "proud + OF + gerund." },
+            { id: 's1_7', prompt: "B: Has he thought", verb: "volunteer", suffix: "at the Botanical Gardens?", ansPrep: "about", ansVerb: "volunteering", exp: "think + ABOUT + gerund." },
+            { id: 's1_8', prompt: "B: I think so. He would have a great time", verb: "work", suffix: "there.", ansPrep: "NO PREP", ansVerb: "working", exp: "have a great time + [gerund directly without preposition]." },
+            { id: 's1_9', prompt: "A: You're right. He would be good", verb: "give", suffix: "tours because he knows so much about plants.", ansPrep: "at", ansVerb: "giving", exp: "good + AT + gerund." },
+            { id: 's1_10', prompt: "A: Thank you", verb: "give", suffix: "me this idea! I can't wait to tell him.", ansPrep: "for", ansVerb: "giving", exp: "thank [someone] + FOR + gerund." }
+        ];
+
+        // --- SECTION 2 QUESTIONS ---
+        const sec2Questions = [
+            {
+                id: 's2_1',
+                sentence: "She insisted to pay for the entire charity dinner, despite our protests.",
+                options: [
+                    "She insisted on paying for the entire charity dinner...",
+                    "She insisted for paying for the entire charity dinner...",
+                    "She insisted about paying for the entire charity dinner...",
+                    "She insisted to paying for the entire charity dinner..."
+                ],
+                correct: 0,
+                explanation: "The verb 'insist' takes 'on' + gerund (-ing). 'Insist to pay' is incorrect."
+            },
+            {
+                id: 's2_2',
+                sentence: "I am really looking forward to meet the founder of Girls Who Code.",
+                options: [
+                    "I am really looking forward to meeting...",
+                    "I am really looking forward for meeting...",
+                    "I am really looking forward meeting...",
+                    "I am really looking forward at meeting..."
+                ],
+                correct: 0,
+                explanation: "In 'look forward to', 'to' is a preposition, so it MUST be followed by a gerund (-ing)."
+            },
+            {
+                id: 's2_3',
+                sentence: "He spent three hours in browsing through the volunteer opportunities online.",
+                options: [
+                    "He spent three hours browsing through...",
+                    "He spent three hours to browse through...",
+                    "He spent three hours on browsing through...",
+                    "He spent three hours for browsing through..."
+                ],
+                correct: 0,
+                explanation: "'Spend time/hours' is followed directly by a gerund without any preposition (NO PREPOSITION)."
+            },
+            {
+                id: 's2_4',
+                sentence: "The police suspected him for stealing money from the non-profit organization.",
+                options: [
+                    "The police suspected him of stealing...",
+                    "The police suspected him about stealing...",
+                    "The police suspected him to steal...",
+                    "The police suspected him from stealing..."
+                ],
+                correct: 0,
+                explanation: "The verb structure is 'suspect [someone] OF [something/doing something]'."
+            },
+            {
+                id: 's2_5',
+                sentence: "What was his reason of quitting such a high-paying corporate role?",
+                options: [
+                    "What was his reason for quitting...",
+                    "What was his reason about quitting...",
+                    "What was his reason to quitting...",
+                    "What was his reason on quitting..."
+                ],
+                correct: 0,
+                explanation: "The noun 'reason' takes the preposition 'for' when explaining a cause or motive."
+            }
+        ];
+
+        // --- SECTION 3 QUESTIONS ---
+        const sec3Questions = [
+            {
+                id: 's3_1',
+                prompt: "Original: The security guard stopped the intruder from entering the research lab.",
+                target: "[prevent ... from]",
+                prefix: "The security guard ",
+                suffix: " entering the research lab.",
+                correct: "prevented the intruder from",
+                explanation: "Prevent [object] + from + gerund."
+            },
+            {
+                id: 's3_2',
+                prompt: "Original: Everyone knows Andrew Carnegie because he funded thousands of libraries.",
+                target: "[famous for]",
+                prefix: "Andrew Carnegie is ",
+                suffix: " thousands of public libraries.",
+                correct: "famous for funding",
+                explanation: "famous for + gerund."
+            },
+            {
+                id: 's3_3',
+                prompt: "Original: She apologized to her colleague because she forgot about the meeting.",
+                target: "[apologize ... for]",
+                prefix: "She ",
+                suffix: " about the meeting.",
+                correct: "apologized to her colleague for forgetting",
+                explanation: "apologize to [someone] for [doing something]."
+            },
+            {
+                id: 's3_4',
+                prompt: "Original: Bill Gates was able to create a computer operating system that dominated the market.",
+                target: "[succeed in]",
+                prefix: "Bill Gates ",
+                suffix: " a market-dominating operating system.",
+                correct: "succeeded in creating",
+                explanation: "succeed in + gerund."
+            }
+        ];
+
+        // --- SECTION 4 DATA ---
+        const sec4Questions = [
+            {
+                id: 's4_1',
+                title: "1. Personal Volunteering Experience",
+                prompt: "Have you ever volunteered to help others? What were you responsible for, and what did you enjoy about it?",
+                starters: ["I have volunteered as...", "I was responsible for...", "I really enjoyed..."],
+                checklist: ["Used 'responsible for + gerund'", "Used 'interested in' or 'enjoyed + gerund'", "Checked prepositions"]
+            },
+            {
+                id: 's4_2',
+                title: "2. Famous Philanthropists & Leaders",
+                prompt: "In your country, is there someone famous for helping people in need? What are they known for?",
+                starters: ["In my country, [Name] is famous for...", "They succeeded in...", "People are grateful to them for..."],
+                checklist: ["Used 'famous for + gerund'", "Used 'grateful to [person] for [action]'", "No extra prepositions with spend/have time"]
+            },
+            {
+                id: 's4_3',
+                title: "3. Future Aspirations",
+                prompt: "What kind of non-profit or community work might interest you in the future? What do you look forward to doing?",
+                starters: ["I am deeply interested in...", "I am capable of...", "I look forward to..."],
+                checklist: ["Used 'look forward to + GERUND (-ing)'", "Used 'interested in + gerund'", "Correct verb forms"]
+            }
+        ];
+
+        let state = {
+            scores: { sec1: 0, sec2: 0, sec3: 0 },
+            userAnswers: {}
+        };
+
+        // --- RENDER FUNCTIONS ---
+        function init() {
+            renderGrammarTable(grammarData);
+            renderSection1();
+            renderSection2();
+            renderSection3();
+            renderSection4();
+            updateProgress();
+        }
+
+        // Dark Mode
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            document.getElementById('theme-toggle-dark-icon').classList.toggle('hidden', !isDark);
+            document.getElementById('theme-toggle-light-icon').classList.toggle('hidden', isDark);
+        }
+
+        // Section Tabs
+        function switchSection(secId) {
+            document.querySelectorAll('.app-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(secId).classList.remove('hidden');
+
+            document.querySelectorAll('.section-nav-btn').forEach(btn => {
+                btn.className = "section-nav-btn px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 flex items-center gap-2";
+            });
+
+            const activeBtn = document.getElementById(`nav-${secId}`);
+            activeBtn.className = "section-nav-btn active px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-blue-600 text-white shadow-sm flex items-center gap-2";
+        }
+
+        // Grammar Table Rendering
+        function renderGrammarTable(data) {
+            const tbody = document.getElementById('grammar-ref-tbody');
+            tbody.innerHTML = '';
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition";
+                tr.innerHTML = `
+                    <td class="py-2.5 px-3 font-semibold text-xs text-blue-600 dark:text-blue-400">${item.type}</td>
+                    <td class="py-2.5 px-3 font-bold text-slate-800 dark:text-slate-100">${item.pattern}</td>
+                    <td class="py-2.5 px-3 text-slate-600 dark:text-slate-300 italic">${item.ex}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('#ref-category-tabs .cat-btn').forEach(btn => {
+                btn.className = "cat-btn px-3.5 py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 whitespace-nowrap";
+            });
+            event.target.className = "cat-btn active px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 border border-blue-200 dark:border-blue-800 whitespace-nowrap";
+
+            if (cat === 'all') {
+                renderGrammarTable(grammarData);
+            } else {
+                const filtered = grammarData.filter(d => d.cat === cat);
+                renderGrammarTable(filtered);
+            }
+        }
+
+        function filterGrammarRef() {
+            const q = document.getElementById('ref-search').value.toLowerCase();
+            const filtered = grammarData.filter(d => 
+                d.pattern.toLowerCase().includes(q) || 
+                d.ex.toLowerCase().includes(q) || 
+                d.type.toLowerCase().includes(q)
+            );
+            renderGrammarTable(filtered);
+        }
+
+        // SECTION 1 RENDER
+        function renderSection1() {
+            const container = document.getElementById('dialogue-container');
+            container.innerHTML = '';
+
+            sec1Questions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = "p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-3";
+
+                let html = `
+                    <div class="text-sm sm:text-base leading-relaxed text-slate-800 dark:text-slate-200">
+                        <span class="font-bold text-slate-400 mr-1">${idx + 1}.</span>
+                        ${q.prompt}
+                        
+                        <!-- Preposition Dropdown -->
+                        <select id="s1-prep-${q.id}" class="mx-1 px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 focus:ring-2 focus:ring-blue-500">
+                            <option value="">-- prep --</option>
+                            <option value="about">about</option>
+                            <option value="for">for</option>
+                            <option value="on">on</option>
+                            <option value="in">in</option>
+                            <option value="of">of</option>
+                            <option value="at">at</option>
+                            <option value="to">to</option>
+                            <option value="NO PREP">NO PREPOSITION</option>
+                        </select>
+
+                        <!-- Verb Input -->
+                        <input type="text" id="s1-verb-${q.id}" placeholder="${q.verb} (-ing)" class="w-32 px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-xs sm:text-sm font-semibold text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500">
+                        
+                        ${q.suffix}
+                    </div>
+                    <div id="s1-fb-${q.id}" class="hidden p-3 rounded-lg text-xs sm:text-sm"></div>
+                `;
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        // SECTION 2 RENDER
+        function renderSection2() {
+            const container = document.getElementById('sec2-container');
+            container.innerHTML = '';
+
+            sec2Questions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3";
+
+                let html = `
+                    <div class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Diagnostic Question ${idx + 1}</div>
+                    <div class="text-sm sm:text-base font-semibold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                        "${q.sentence}"
+                    </div>
+                    <div class="space-y-2 pt-1">
+                `;
+
+                q.options.forEach((opt, optIdx) => {
+                    html += `
+                        <label class="flex items-start gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer transition">
+                            <input type="radio" name="rad-s2-${q.id}" value="${optIdx}" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                            <span class="text-xs sm:text-sm text-slate-700 dark:text-slate-300">${opt}</span>
+                        </label>
+                    `;
+                });
+
+                html += `
+                    </div>
+                    <div id="s2-fb-${q.id}" class="hidden p-3 rounded-xl text-xs sm:text-sm mt-2"></div>
+                `;
+
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        // SECTION 3 RENDER
+        function renderSection3() {
+            const container = document.getElementById('sec3-container');
+            container.innerHTML = '';
+
+            sec3Questions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3";
+
+                let html = `
+                    <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Transformation ${idx + 1}</div>
+                    <div class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">${q.prompt}</div>
+                    <div class="text-xs font-bold text-blue-600 dark:text-blue-400">Target pattern: ${q.target}</div>
+                    
+                    <div class="flex flex-wrap items-center gap-2 text-sm text-slate-800 dark:text-slate-200 pt-2">
+                        <span>${q.prefix}</span>
+                        <input type="text" id="s3-input-${q.id}" placeholder="type transformed phrase..." class="flex-grow min-w-[200px] px-3 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-xl font-semibold text-blue-600 dark:text-blue-400 focus:ring-2 focus:ring-blue-500">
+                        <span>${q.suffix}</span>
+                    </div>
+
+                    <div id="s3-fb-${q.id}" class="hidden p-3 rounded-xl text-xs sm:text-sm mt-2"></div>
+                `;
+
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        // SECTION 4 RENDER
+        function renderSection4() {
+            const container = document.getElementById('sec4-container');
+            container.innerHTML = '';
+
+            sec4Questions.forEach((q) => {
+                const card = document.createElement('div');
+                card.className = "bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4";
+
+                let html = `
+                    <h4 class="font-bold text-base text-slate-900 dark:text-white">${q.title}</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">${q.prompt}</p>
+                    
+                    <div class="flex flex-wrap gap-2 text-xs">
+                        <span class="font-semibold text-slate-400">Sentence starters:</span>
+                        ${q.starters.map(s => `<span class="bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-300">${s}</span>`).join('')}
+                    </div>
+
+                    <textarea id="s4-text-${q.id}" rows="3" placeholder="Write your response using target prepositions + gerunds..." class="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500 dark:text-white"></textarea>
+
+                    <div class="bg-emerald-50/50 dark:bg-emerald-950/20 p-3.5 rounded-xl border border-emerald-200/60 dark:border-emerald-800/40">
+                        <div class="text-xs font-bold text-emerald-800 dark:text-emerald-300 mb-2">Self-Audit Checklist:</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            ${q.checklist.map((c, cIdx) => `
+                                <label class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300">
+                                    <input type="checkbox" class="rounded text-emerald-600 focus:ring-emerald-500">
+                                    <span>${c}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        // --- CHECKING LOGIC ---
+        function checkSection1() {
+            let correctCount = 0;
+            sec1Questions.forEach(q => {
+                const prepVal = document.getElementById(`s1-prep-${q.id}`).value;
+                const verbVal = document.getElementById(`s1-verb-${q.id}`).value.trim().toLowerCase();
+                const fb = document.getElementById(`s1-fb-${q.id}`);
+
+                const isPrepCorrect = prepVal === q.ansPrep;
+                const isVerbCorrect = verbVal === q.ansVerb.toLowerCase();
+
+                fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-red-50', 'text-red-800', 'dark:bg-emerald-950/40', 'dark:bg-red-950/40');
+
+                if (isPrepCorrect && isVerbCorrect) {
+                    correctCount++;
+                    fb.classList.add('bg-emerald-50', 'text-emerald-800', 'dark:bg-emerald-950/40', 'dark:text-emerald-300');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> <strong>Correct!</strong> ${q.exp}`;
+                } else {
+                    fb.classList.add('bg-red-50', 'text-red-800', 'dark:bg-red-950/40', 'dark:text-red-300');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 mr-1.5"></i> <strong>Incorrect.</strong> Correct answer: <span class="font-bold">${q.ansPrep}</span> + <span class="font-bold">${q.ansVerb}</span>. ${q.exp}`;
+                }
+            });
+
+            state.scores.sec1 = correctCount;
+            updateScoreHeader();
+        }
+
+        function checkSection2() {
+            let correctCount = 0;
+            sec2Questions.forEach(q => {
+                const selected = document.querySelector(`input[name="rad-s2-${q.id}"]:checked`);
+                const fb = document.getElementById(`s2-fb-${q.id}`);
+                fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-red-50', 'text-red-800');
+
+                if (selected && parseInt(selected.value) === q.correct) {
+                    correctCount++;
+                    fb.classList.add('bg-emerald-50', 'text-emerald-800', 'dark:bg-emerald-950/40', 'dark:text-emerald-300');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> <strong>Correct!</strong> ${q.explanation}`;
+                } else {
+                    fb.classList.add('bg-red-50', 'text-red-800', 'dark:bg-red-950/40', 'dark:text-red-300');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 mr-1.5"></i> <strong>Incorrect.</strong> ${q.explanation}`;
+                }
+            });
+
+            state.scores.sec2 = correctCount;
+            updateScoreHeader();
+        }
+
+        function checkSection3() {
+            let correctCount = 0;
+            sec3Questions.forEach(q => {
+                const inputVal = document.getElementById(`s3-input-${q.id}`).value.trim().toLowerCase();
+                const fb = document.getElementById(`s3-fb-${q.id}`);
+                fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-red-50', 'text-red-800');
+
+                if (inputVal === q.correct.toLowerCase()) {
+                    correctCount++;
+                    fb.classList.add('bg-emerald-50', 'text-emerald-800', 'dark:bg-emerald-950/40', 'dark:text-emerald-300');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> <strong>Correct!</strong> ${q.explanation}`;
+                } else {
+                    fb.classList.add('bg-red-50', 'text-red-800', 'dark:bg-red-950/40', 'dark:text-red-300');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 mr-1.5"></i> <strong>Incorrect.</strong> Expected: "<strong>${q.correct}</strong>". ${q.explanation}`;
+                }
+            });
+
+            state.scores.sec3 = correctCount;
+            updateScoreHeader();
+        }
+
+        function updateScoreHeader() {
+            const totalScore = state.scores.sec1 + state.scores.sec2 + state.scores.sec3;
+            document.getElementById('header-score').innerText = totalScore;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalQuestions = sec1Questions.length + sec2Questions.length + sec3Questions.length;
+            const totalScore = state.scores.sec1 + state.scores.sec2 + state.scores.sec3;
+
+            document.getElementById('header-progress-text').innerText = `${totalScore}/${totalQuestions}`;
+            const pct = Math.round((totalScore / totalQuestions) * 100);
+            document.getElementById('header-progress-bar').style.width = `${pct}%`;
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
